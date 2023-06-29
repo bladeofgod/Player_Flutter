@@ -101,8 +101,8 @@ public class FTXDownloadManager implements ITXVodDownloadListener, TXFlutterDown
             msg.setUserName(mediaInfo.getUserName());
             msg.setDuration((long) mediaInfo.getDuration());
             msg.setPlayableDuration((long) mediaInfo.getPlayableDuration());
-            msg.setSize(mediaInfo.getSize());
-            msg.setDownloadSize(mediaInfo.getDownloadSize());
+            msg.setSize((long) mediaInfo.getSize());
+            msg.setDownloadSize((long) mediaInfo.getDownloadSize());
             if (!TextUtils.isEmpty(mediaInfo.getUrl())) {
                 msg.setUrl(mediaInfo.getUrl());
             }
@@ -118,7 +118,8 @@ public class FTXDownloadManager implements ITXVodDownloadListener, TXFlutterDown
                 msg.setToken(dataSource.getToken());
             }
             msg.setSpeed((long)mediaInfo.getSpeed());
-            msg.setIsResourceBroken(mediaInfo.isResourceBroken());
+            //新版本的应用层代码，使用老的sdk，会缺失字段，只能使用默认值
+            msg.setIsResourceBroken(false);
         }
         return msg;
     }
@@ -155,7 +156,8 @@ public class FTXDownloadManager implements ITXVodDownloadListener, TXFlutterDown
             bundle.putString("token", dataSource.getToken());
         }
         bundle.putInt("speed", mediaInfo.getSpeed());
-        bundle.putBoolean("isResourceBroken", mediaInfo.isResourceBroken());
+        //新版本的应用层代码，使用老的sdk，会缺失字段，只能使用默认值
+        bundle.putBoolean("isResourceBroken", false);
         return bundle;
     }
 
